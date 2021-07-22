@@ -293,8 +293,8 @@ namespace mRemoteNG.UI.Forms
         {
             var connectionInitiator = new ConnectionInitiator();
             fileMenu.TreeWindow = Windows.TreeForm;
-            fileMenu.ConnectionInitiator = connectionInitiator;
 
+            viewMenu.ConnectionInitiator = connectionInitiator;
             viewMenu.TsExternalTools = _externalToolsToolStrip;
             viewMenu.TsQuickConnect = _quickConnectToolStrip;
             viewMenu.TsMultiSsh = _multiSshToolStrip;

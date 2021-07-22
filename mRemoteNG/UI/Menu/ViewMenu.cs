@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using mRemoteNG.App;
+using mRemoteNG.Connection;
 using mRemoteNG.Properties;
 using mRemoteNG.Resources.Language;
 using mRemoteNG.UI.Forms;
@@ -29,6 +30,7 @@ namespace mRemoteNG.UI.Menu
         private ToolStripMenuItem _mMenViewResetLayout;
         private ToolStripMenuItem _mMenViewLockToolbars;
         private ToolStripSeparator _toolStripSeparator1;
+        private ToolStripMenuItem _mMenReconnectAll;
         private readonly PanelAdder _panelAdder;
 
 
@@ -37,6 +39,7 @@ namespace mRemoteNG.UI.Menu
         public ToolStrip TsMultiSsh { get; set; }
         public FullscreenHandler FullscreenHandler { get; set; }
         public FrmMain MainForm { get; set; }
+        public IConnectionInitiator ConnectionInitiator { get; set; }
 
 
         public ViewMenu()
@@ -65,7 +68,7 @@ namespace mRemoteNG.UI.Menu
             _mMenViewSep3 = new ToolStripSeparator();
             _mMenViewFullscreen = new ToolStripMenuItem();
             _toolStripSeparator1 = new ToolStripSeparator();
-
+            _mMenReconnectAll = new ToolStripMenuItem();
             // 
             // mMenView
             // 
@@ -86,12 +89,12 @@ namespace mRemoteNG.UI.Menu
                 _mMenViewExtAppsToolbar,
                 _mMenViewMultiSshToolbar,
                 _mMenViewSep3,
+                _mMenReconnectAll,
                 _mMenViewFullscreen
             });
             Name = "mMenView";
             Size = new System.Drawing.Size(44, 20);
             Text = Language._View;
-            //DropDownOpening += mMenView_DropDownOpening;
             // 
             // mMenViewAddConnectionPanel
             // 
@@ -228,6 +231,14 @@ namespace mRemoteNG.UI.Menu
             _mMenViewSep3.Name = "mMenViewSep3";
             _mMenViewSep3.Size = new System.Drawing.Size(225, 6);
             // 
+            // mMenReconnectAll
+            // 
+            _mMenReconnectAll.Image = Properties.Resources.Refresh;
+            _mMenReconnectAll.Name = "mMenReconnectAll";
+            _mMenReconnectAll.Size = new System.Drawing.Size(281, 22);
+            _mMenReconnectAll.Text = Language.ReconnectAllConnections;
+            _mMenReconnectAll.Click += mMenReconnectAll_Click;
+            // 
             // mMenViewFullscreen
             // 
             _mMenViewFullscreen.Image = Properties.Resources.arrow_out;
@@ -257,6 +268,7 @@ namespace mRemoteNG.UI.Menu
             _mMenViewExtAppsToolbar.Text = Language.ExternalToolsToolbar;
             _mMenViewMultiSshToolbar.Text = Language.MultiSshToolbar;
             _mMenViewFullscreen.Text = Language.Fullscreen;
+            _mMenReconnectAll.Text = Language.ReconnectAll;
         }
 
         #region View
@@ -302,6 +314,18 @@ namespace mRemoteNG.UI.Menu
             {
                 Windows.TreeForm.Hide();
                 _mMenViewConnections.Checked = false;
+            }
+        }
+
+        private void mMenReconnectAll_Click(object sender, EventArgs e)
+        {
+            if (Runtime.WindowList == null || Runtime.WindowList.Count == 0) return;
+            foreach (BaseWindow window in Runtime.WindowList)
+            {
+                if (!(window is ConnectionWindow connectionWindow))
+                    return;
+
+                connectionWindow.reconnectAll(ConnectionInitiator);
             }
         }
 

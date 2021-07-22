@@ -20,10 +20,8 @@ namespace mRemoteNG.UI.Menu
         private ToolStripMenuItem _mMenFileSave;
         private ToolStripMenuItem _mMenFileSaveAs;
         private ToolStripMenuItem _mMenFileExit;
-        private ToolStripMenuItem _mMenReconnectAll;
 
         public ConnectionTreeWindow TreeWindow { get; set; }
-        public IConnectionInitiator ConnectionInitiator { get; set; }
 
         public FileMenu()
         {
@@ -36,7 +34,6 @@ namespace mRemoteNG.UI.Menu
             _mMenFileLoad = new ToolStripMenuItem();
             _mMenFileSave = new ToolStripMenuItem();
             _mMenFileSaveAs = new ToolStripMenuItem();
-            _mMenReconnectAll = new ToolStripMenuItem();
             _mMenFileExit = new ToolStripMenuItem();
 
             // 
@@ -48,7 +45,6 @@ namespace mRemoteNG.UI.Menu
                 _mMenFileLoad,
                 _mMenFileSave,
                 _mMenFileSaveAs,
-                _mMenReconnectAll,
                 _mMenFileExit
             });
             Name = "mMenFile";
@@ -91,14 +87,6 @@ namespace mRemoteNG.UI.Menu
             _mMenFileSaveAs.Text = Language.SaveConnectionFileAs;
             _mMenFileSaveAs.Click += mMenFileSaveAs_Click;
             // 
-            // mMenReconnectAll
-            // 
-            _mMenReconnectAll.Image = Properties.Resources.Refresh;
-            _mMenReconnectAll.Name = "mMenReconnectAll";
-            _mMenReconnectAll.Size = new System.Drawing.Size(281, 22);
-            _mMenReconnectAll.Text = Language.ReconnectAllConnections;
-            _mMenReconnectAll.Click += mMenReconnectAll_Click;
-            // 
             // mMenFileExit
             // 
             _mMenFileExit.Image = Properties.Resources.Quit;
@@ -117,7 +105,6 @@ namespace mRemoteNG.UI.Menu
             _mMenFileSave.Text = Language.SaveConnectionFile;
             _mMenFileSaveAs.Text = Language.SaveConnectionFileAs;
             _mMenFileExit.Text = Language.Exit;
-            _mMenReconnectAll.Text = Language.ReconnectAll;
         }
 
         #region File
@@ -207,18 +194,6 @@ namespace mRemoteNG.UI.Menu
         private void mMenFileDuplicate_Click(object sender, EventArgs e)
         {
             TreeWindow.ConnectionTree.DuplicateSelectedNode();
-        }
-
-        private void mMenReconnectAll_Click(object sender, EventArgs e)
-        {
-            if (Runtime.WindowList == null || Runtime.WindowList.Count == 0) return;
-            foreach (BaseWindow window in Runtime.WindowList)
-            {
-                if (!(window is ConnectionWindow connectionWindow))
-                    return;
-
-                connectionWindow.reconnectAll(ConnectionInitiator);
-            }
         }
 
         private void mMenFileImportFromFile_Click(object sender, EventArgs e)

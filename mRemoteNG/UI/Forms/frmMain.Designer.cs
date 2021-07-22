@@ -85,7 +85,6 @@
             // 
             // fileMenu
             // 
-            this.fileMenu.ConnectionInitiator = null;
             this.fileMenu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.fileMenu.Name = "mMenFile";
             this.fileMenu.Size = new System.Drawing.Size(37, 19);
@@ -94,6 +93,7 @@
             // 
             // viewMenu
             // 
+            this.viewMenu.ConnectionInitiator = null;
             this.viewMenu.FullscreenHandler = null;
             this.viewMenu.MainForm = null;
             this.viewMenu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
