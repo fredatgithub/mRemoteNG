@@ -249,7 +249,6 @@ namespace mRemoteNG.UI.Forms
         {
             fileMenu.ApplyLanguage();
             viewMenu.ApplyLanguage();
-            toolsMenu.ApplyLanguage();
             helpMenu.ApplyLanguage();
         }
 
@@ -300,9 +299,6 @@ namespace mRemoteNG.UI.Forms
             viewMenu.TsMultiSsh = _multiSshToolStrip;
             viewMenu.FullscreenHandler = Fullscreen;
             viewMenu.MainForm = this;
-
-            toolsMenu.MainForm = this;
-            toolsMenu.CredentialProviderCatalog = Runtime.CredentialProviderCatalog;
 
             _quickConnectToolStrip.ConnectionInitiator = connectionInitiator;
         }

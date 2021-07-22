@@ -663,9 +663,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Menu\AdvancedWindowMenu.cs" />
-    <Compile Include="UI\Menu\ToolsMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="UI\Menu\ViewMenu.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -20,6 +20,14 @@ namespace mRemoteNG.UI.Menu
         private ToolStripMenuItem _mMenFileSave;
         private ToolStripMenuItem _mMenFileSaveAs;
         private ToolStripMenuItem _mMenFileExit;
+        private ToolStripSeparator _mMenToolsSep1;
+        private ToolStripSeparator _mMenToolsSep2;
+        private ToolStripSeparator _mMenToolsSep3;
+        private ToolStripMenuItem _mMenToolsOptions;
+        private ToolStripMenuItem _mMenToolsSshTransfer;
+        private ToolStripMenuItem _mMenToolsExternalApps;
+        private ToolStripMenuItem _mMenToolsPortScan;
+        private ToolStripMenuItem _mMenToolsUvncsc;
 
         public ConnectionTreeWindow TreeWindow { get; set; }
 
@@ -35,6 +43,14 @@ namespace mRemoteNG.UI.Menu
             _mMenFileSave = new ToolStripMenuItem();
             _mMenFileSaveAs = new ToolStripMenuItem();
             _mMenFileExit = new ToolStripMenuItem();
+            _mMenToolsSshTransfer = new ToolStripMenuItem();
+            _mMenToolsUvncsc = new ToolStripMenuItem();
+            _mMenToolsExternalApps = new ToolStripMenuItem();
+            _mMenToolsPortScan = new ToolStripMenuItem();
+            _mMenToolsSep1 = new ToolStripSeparator();
+            _mMenToolsSep2 = new ToolStripSeparator();
+            _mMenToolsSep3 = new ToolStripSeparator();
+            _mMenToolsOptions = new ToolStripMenuItem();
 
             // 
             // mMenFile
@@ -45,6 +61,14 @@ namespace mRemoteNG.UI.Menu
                 _mMenFileLoad,
                 _mMenFileSave,
                 _mMenFileSaveAs,
+                _mMenToolsSep1,
+                _mMenToolsSshTransfer,
+                _mMenToolsUvncsc,
+                _mMenToolsExternalApps,
+                _mMenToolsPortScan,
+                _mMenToolsSep2,
+                _mMenToolsOptions,
+                _mMenToolsSep3,
                 _mMenFileExit
             });
             Name = "mMenFile";
@@ -95,6 +119,52 @@ namespace mRemoteNG.UI.Menu
             _mMenFileExit.Size = new System.Drawing.Size(281, 22);
             _mMenFileExit.Text = Language.Exit;
             _mMenFileExit.Click += mMenFileExit_Click;
+            // 
+            // mMenToolsSSHTransfer
+            // 
+            _mMenToolsSshTransfer.Image = Properties.Resources.SSHTransfer;
+            _mMenToolsSshTransfer.Name = "mMenToolsSSHTransfer";
+            _mMenToolsSshTransfer.Size = new System.Drawing.Size(184, 22);
+            _mMenToolsSshTransfer.Text = Language.SshFileTransfer;
+            _mMenToolsSshTransfer.Click += mMenToolsSSHTransfer_Click;
+            // 
+            // mMenToolsUVNCSC
+            // 
+            _mMenToolsUvncsc.Image = Properties.Resources.UVNC_SC;
+            _mMenToolsUvncsc.Name = "mMenToolsUVNCSC";
+            _mMenToolsUvncsc.Size = new System.Drawing.Size(184, 22);
+            _mMenToolsUvncsc.Text = Language.UltraVNCSingleClick;
+            _mMenToolsUvncsc.Visible = false;
+            _mMenToolsUvncsc.Click += mMenToolsUVNCSC_Click;
+            // 
+            // mMenToolsExternalApps
+            // 
+            _mMenToolsExternalApps.Image = Properties.Resources.ExtApp;
+            _mMenToolsExternalApps.Name = "mMenToolsExternalApps";
+            _mMenToolsExternalApps.Size = new System.Drawing.Size(184, 22);
+            _mMenToolsExternalApps.Text = Language.ExternalTool;
+            _mMenToolsExternalApps.Click += mMenToolsExternalApps_Click;
+            // 
+            // mMenToolsPortScan
+            // 
+            _mMenToolsPortScan.Image = Properties.Resources.PortScan;
+            _mMenToolsPortScan.Name = "mMenToolsPortScan";
+            _mMenToolsPortScan.Size = new System.Drawing.Size(184, 22);
+            _mMenToolsPortScan.Text = Language.PortScan;
+            _mMenToolsPortScan.Click += mMenToolsPortScan_Click;
+            // 
+            // mMenToolsSep1
+            // 
+            _mMenToolsSep1.Name = "mMenToolsSep1";
+            _mMenToolsSep1.Size = new System.Drawing.Size(181, 6);
+            // 
+            // mMenToolsOptions
+            // 
+            _mMenToolsOptions.Image = Properties.Resources.Options;
+            _mMenToolsOptions.Name = "mMenToolsOptions";
+            _mMenToolsOptions.Size = new System.Drawing.Size(184, 22);
+            _mMenToolsOptions.Text = Language.Options;
+            _mMenToolsOptions.Click += mMenToolsOptions_Click;
         }
 
         public void ApplyLanguage()
@@ -105,6 +175,10 @@ namespace mRemoteNG.UI.Menu
             _mMenFileSave.Text = Language.SaveConnectionFile;
             _mMenFileSaveAs.Text = Language.SaveConnectionFileAs;
             _mMenFileExit.Text = Language.Exit;
+            _mMenToolsSshTransfer.Text = Language.SshFileTransfer;
+            _mMenToolsExternalApps.Text = Language.ExternalTool;
+            _mMenToolsPortScan.Text = Language.PortScan;
+            _mMenToolsOptions.Text = Language.Options;
         }
 
         #region File
@@ -225,6 +299,35 @@ namespace mRemoteNG.UI.Menu
         private void mMenFileExit_Click(object sender, EventArgs e)
         {
             Shutdown.Quit();
+        }
+
+        #endregion
+
+        #region Tools
+
+        private void mMenToolsSSHTransfer_Click(object sender, EventArgs e)
+        {
+            Windows.Show(WindowType.SSHTransfer);
+        }
+
+        private void mMenToolsUVNCSC_Click(object sender, EventArgs e)
+        {
+            Windows.Show(WindowType.UltraVNCSC);
+        }
+
+        private void mMenToolsExternalApps_Click(object sender, EventArgs e)
+        {
+            Windows.Show(WindowType.ExternalApps);
+        }
+
+        private void mMenToolsPortScan_Click(object sender, EventArgs e)
+        {
+            Windows.Show(WindowType.PortScan);
+        }
+
+        private void mMenToolsOptions_Click(object sender, EventArgs e)
+        {
+            Windows.Show(WindowType.Options);
         }
 
         #endregion
