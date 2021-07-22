@@ -15,10 +15,8 @@ namespace mRemoteNG.UI.Menu
         private ToolStripSeparator _mMenInfoSep1;
         private ToolStripMenuItem _mMenInfoAbout;
         private ToolStripMenuItem _mMenInfoDonate;
-        private ToolStripMenuItem _mMenToolsUpdate;
         private ToolStripSeparator _mMenInfoSep2;
         private ToolStripMenuItem _mMenInfoBugReport;
-        private ToolStripSeparator _toolStripSeparator2;
         private ToolStripMenuItem _mMenInfoForum;
 
         public HelpMenu()
@@ -34,9 +32,7 @@ namespace mRemoteNG.UI.Menu
             _mMenInfoDonate = new ToolStripMenuItem();
             _mMenInfoForum = new ToolStripMenuItem();
             _mMenInfoBugReport = new ToolStripMenuItem();
-            _toolStripSeparator2 = new ToolStripSeparator();
             _mMenInfoSep2 = new ToolStripSeparator();
-            _mMenToolsUpdate = new ToolStripMenuItem();
             _mMenInfoAbout = new ToolStripMenuItem();
 
             // 
@@ -50,8 +46,6 @@ namespace mRemoteNG.UI.Menu
                 _mMenInfoDonate,
                 _mMenInfoForum,
                 _mMenInfoBugReport,
-                _toolStripSeparator2,
-                _mMenToolsUpdate,
                 _mMenInfoSep2,
                 _mMenInfoAbout
             });
@@ -106,19 +100,6 @@ namespace mRemoteNG.UI.Menu
             _mMenInfoBugReport.Text = Language.ReportBug;
             _mMenInfoBugReport.Click += mMenInfoBugReport_Click;
             // 
-            // ToolStripSeparator2
-            // 
-            _toolStripSeparator2.Name = "ToolStripSeparator2";
-            _toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
-            // 
-            // mMenToolsUpdate
-            // 
-            _mMenToolsUpdate.Image = Properties.Resources.Update;
-            _mMenToolsUpdate.Name = "mMenToolsUpdate";
-            _mMenToolsUpdate.Size = new System.Drawing.Size(190, 22);
-            _mMenToolsUpdate.Text = Language.CheckForUpdates;
-            _mMenToolsUpdate.Click += mMenToolsUpdate_Click;
-            // 
             // mMenInfoSep2
             // 
             _mMenInfoSep2.Name = "mMenInfoSep2";
@@ -141,13 +122,10 @@ namespace mRemoteNG.UI.Menu
             _mMenInfoDonate.Text = Language.Donate;
             _mMenInfoForum.Text = Language.SupportForum;
             _mMenInfoBugReport.Text = Language.ReportBug;
-            _mMenToolsUpdate.Text = Language.CheckForUpdates;
             _mMenInfoAbout.Text = Language.About;
         }
 
         #region Info
-
-        private void mMenToolsUpdate_Click(object sender, EventArgs e) => Windows.Show(WindowType.Update);
 
         private void mMenInfoHelp_Click(object sender, EventArgs e) => Process.Start(GeneralAppInfo.UrlDocumentation);
 

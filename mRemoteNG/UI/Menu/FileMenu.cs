@@ -28,6 +28,7 @@ namespace mRemoteNG.UI.Menu
         private ToolStripMenuItem _mMenToolsExternalApps;
         private ToolStripMenuItem _mMenToolsPortScan;
         private ToolStripMenuItem _mMenToolsUvncsc;
+        private ToolStripMenuItem _mMenToolsUpdate;
 
         public ConnectionTreeWindow TreeWindow { get; set; }
 
@@ -51,6 +52,7 @@ namespace mRemoteNG.UI.Menu
             _mMenToolsSep2 = new ToolStripSeparator();
             _mMenToolsSep3 = new ToolStripSeparator();
             _mMenToolsOptions = new ToolStripMenuItem();
+            _mMenToolsUpdate = new ToolStripMenuItem();
 
             // 
             // mMenFile
@@ -67,6 +69,7 @@ namespace mRemoteNG.UI.Menu
                 _mMenToolsExternalApps,
                 _mMenToolsPortScan,
                 _mMenToolsSep2,
+                _mMenToolsUpdate,
                 _mMenToolsOptions,
                 _mMenToolsSep3,
                 _mMenFileExit
@@ -165,6 +168,14 @@ namespace mRemoteNG.UI.Menu
             _mMenToolsOptions.Size = new System.Drawing.Size(184, 22);
             _mMenToolsOptions.Text = Language.Options;
             _mMenToolsOptions.Click += mMenToolsOptions_Click;
+            // 
+            // mMenToolsUpdate
+            // 
+            _mMenToolsUpdate.Image = Properties.Resources.Update;
+            _mMenToolsUpdate.Name = "mMenToolsUpdate";
+            _mMenToolsUpdate.Size = new System.Drawing.Size(190, 22);
+            _mMenToolsUpdate.Text = Language.CheckForUpdates;
+            _mMenToolsUpdate.Click += mMenToolsUpdate_Click;
         }
 
         public void ApplyLanguage()
@@ -179,6 +190,7 @@ namespace mRemoteNG.UI.Menu
             _mMenToolsExternalApps.Text = Language.ExternalTool;
             _mMenToolsPortScan.Text = Language.PortScan;
             _mMenToolsOptions.Text = Language.Options;
+            _mMenToolsUpdate.Text = Language.CheckForUpdates;
         }
 
         #region File
@@ -301,10 +313,6 @@ namespace mRemoteNG.UI.Menu
             Shutdown.Quit();
         }
 
-        #endregion
-
-        #region Tools
-
         private void mMenToolsSSHTransfer_Click(object sender, EventArgs e)
         {
             Windows.Show(WindowType.SSHTransfer);
@@ -329,6 +337,7 @@ namespace mRemoteNG.UI.Menu
         {
             Windows.Show(WindowType.Options);
         }
+        private void mMenToolsUpdate_Click(object sender, EventArgs e) => Windows.Show(WindowType.Update);
 
         #endregion
     }
