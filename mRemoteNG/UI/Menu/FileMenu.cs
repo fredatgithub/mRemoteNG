@@ -195,16 +195,6 @@ namespace mRemoteNG.UI.Menu
 
         #region File
 
-        private void mMenFileNewConnection_Click(object sender, EventArgs e)
-        {
-            TreeWindow.ConnectionTree.AddConnection();
-        }
-
-        private void mMenFileNewFolder_Click(object sender, EventArgs e)
-        {
-            TreeWindow.ConnectionTree.AddFolder();
-        }
-
         private void mMenFileNew_Click(object sender, EventArgs e)
         {
             using (var saveFileDialog = DialogFactory.ConnectionsSaveAsDialog())
@@ -265,47 +255,6 @@ namespace mRemoteNG.UI.Menu
                     Settings.Default.CustomConsPath = newFileName;
                 }
             }
-        }
-
-        private void mMenFileDelete_Click(object sender, EventArgs e)
-        {
-            TreeWindow.ConnectionTree.DeleteSelectedNode();
-        }
-
-        private void mMenFileRename_Click(object sender, EventArgs e)
-        {
-            TreeWindow.ConnectionTree.RenameSelectedNode();
-        }
-
-        private void mMenFileDuplicate_Click(object sender, EventArgs e)
-        {
-            TreeWindow.ConnectionTree.DuplicateSelectedNode();
-        }
-
-        private void mMenFileImportFromFile_Click(object sender, EventArgs e)
-        {
-            var selectedNode = TreeWindow.SelectedNode;
-            ContainerInfo importDestination;
-            if (selectedNode == null)
-                importDestination = Runtime.ConnectionsService.ConnectionTreeModel.RootNodes.First();
-            else
-                importDestination = selectedNode as ContainerInfo ?? selectedNode.Parent;
-            Import.ImportFromFile(importDestination);
-        }
-
-        private void mMenFileImportFromActiveDirectory_Click(object sender, EventArgs e)
-        {
-            Windows.Show(WindowType.ActiveDirectoryImport);
-        }
-
-        private void mMenFileImportFromPortScan_Click(object sender, EventArgs e)
-        {
-            Windows.Show(WindowType.PortScan);
-        }
-
-        private void mMenFileExport_Click(object sender, EventArgs e)
-        {
-            Export.ExportToFile(Windows.TreeForm.SelectedNode, Runtime.ConnectionsService.ConnectionTreeModel);
         }
 
         private void mMenFileExit_Click(object sender, EventArgs e)
