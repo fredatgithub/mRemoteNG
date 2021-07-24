@@ -125,3 +125,7 @@ GNU General Public License (GPL) Version 3
 **[ConsoleControl](https://github.com/dwmkerr/consolecontrol)**  
 Copyright © 2015 Dave Kerr  
 MIT License  
+
+**[SVG.NET](https://github.com/svg-net/SVG)**  
+Copyright © 2011
+Microsoft Public License 
